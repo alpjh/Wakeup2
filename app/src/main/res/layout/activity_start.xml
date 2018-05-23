@@ -48,4 +48,16 @@
         app:layout_constraintTop_toBottomOf="@+id/start_imgb_help"
         app:srcCompat="@drawable/btn_setting" />
 
+    <EditText
+        android:id="@+id/start_et_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/start_imgb_start"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="84dp" />
+
 </android.support.constraint.ConstraintLayout>

@@ -9,11 +9,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity  {
 
-    //private FirebaseD
+
+
     public static int classScore = 0;
 
     public static boolean gameClear = false;
@@ -22,6 +25,7 @@ public class GameActivity extends AppCompatActivity  {
     ArrayList<Student> students = new ArrayList<>();
 
     public static TextView totalScore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

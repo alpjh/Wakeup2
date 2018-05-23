@@ -4,21 +4,32 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+
 
 public class StartActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+    ImageButton sBtnStart, sBtnHelp, sBtnSetting;
+    EditText sETid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        ImageButton sBtnStart, sBtnHelp, sBtnSetting;
 
         sBtnStart = (ImageButton)findViewById(R.id.start_imgb_start);
         sBtnHelp = (ImageButton)findViewById(R.id.start_imgb_help);
         sBtnSetting = (ImageButton)findViewById(R.id.start_imgb_setting);
+        sETid = (EditText)findViewById(R.id.start_et_id);
 
         sBtnStart.setOnClickListener(this);
         sBtnHelp.setOnClickListener(this);
@@ -30,6 +41,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.start_imgb_start :
+                databaseReference.child("user").child(sETid.getText().toString()).setValue("0");
                 Intent story_intent = new Intent(StartActivity.this, StoryActivity.class);
                 startActivity(story_intent);
                 overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity);
