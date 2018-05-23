@@ -1,10 +1,12 @@
 package com.example.alpjh.wakeup;
 
+import android.media.Image;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -16,15 +18,15 @@ public class Student extends AppCompatActivity {
     private ImageButton btn;
     private TimerTask second;
     private final Handler handler = new Handler();
-    private TextView health_text;
+    private ImageView health_img;
     public int sleep_timer;
     public int health;
     public boolean isSleep;
     public boolean isDead;
 
-    public Student(TextView health_text, ImageButton image) {
+    public Student(ImageView health_img, ImageButton image) {
 
-        this.health_text = health_text;
+        this.health_img = health_img;
         this.btn =image;
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +38,6 @@ public class Student extends AppCompatActivity {
             }
         });
     }
-
 
     public void testStart() {
 
@@ -72,17 +73,21 @@ public class Student extends AppCompatActivity {
         Runnable updater = new Runnable() {
             public void run() {
                 GameActivity.totalScore.setText(GameActivity.classScore + "/200");
-                health_text.setText(health + "");
+                //health_text.setText(health + "");
+                if (health > 10)
+                    health_img.setImageResource(R.drawable.full);
+                else
+                    health_img.setImageResource(R.drawable.danger);
                 if(sleep_timer == 0) {
                     imgReturn(btn);
                 }
                 if(health == 0) {
                     isDead = true;
-                    health_text.setText("DeadBono");
+                    //health_text.setText("DeadBono");
                     btn.setImageResource(R.drawable.sleep);
                     second.cancel();
                 }
-                if(GameActivity.classScore >= 300) {
+                if(GameActivity.classScore >= 500) {
                     second.cancel();
                     GameActivity.totalScore.setText("CLEAR!");
                     GameActivity.gameClear = true;

@@ -21,5 +21,6 @@
         <activity android:name=".SettingActivity" />
         <activity android:name=".GameActivity"></activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

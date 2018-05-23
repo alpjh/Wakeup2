@@ -10,21 +10,11 @@ public class Prologue {
 
     public void storySet() {
 
-        StoryActivity.story.add("충성!");
-        StoryActivity.story.add("신병이니??");
-        StoryActivity.story.add("이병! 최영호! 신병입니다!");
-        StoryActivity.story.add("그래 군생활 열심히 하고");
-        StoryActivity.story.add("예!");
-        StoryActivity.story.add("다나까 안쓰냐?");
-        StoryActivity.story.add("죄송합니다!");
-        StoryActivity.story.add("죄송하면 다냐? 죄송하면 군생활 끝나?");
-        StoryActivity.story.add("시정하겠습니다!");
-        StoryActivity.story.add("니가 어떻게 시정할건데?");
-        StoryActivity.story.add("...");
-        StoryActivity.story.add("이병 나부랭이가 어떻게 시정할거냐고");
-        StoryActivity.story.add("내가 묻잖아!");
-        StoryActivity.story.add("'시발..'");
-        StoryActivity.story.add("영두가 짬을 먹게 만들어 영두를 전역시켜라!");
+        StoryActivity.story.add("test message입니다.");
+        StoryActivity.story.add("test message 2입니다. \n다른 이미지가 출력됩니다.");
+        StoryActivity.story.add("기존 이미지가 출력됩니다.");
+        StoryActivity.story.add("이미지1이 출력됩니다.");
+        StoryActivity.story.add("게임을 시작합니다");
     }
 
     public void illSet() {
@@ -33,24 +23,11 @@ public class Prologue {
         StoryActivity.ill.add(0);
         StoryActivity.ill.add(1);
         StoryActivity.ill.add(0);
-        StoryActivity.ill.add(1);
-        StoryActivity.ill.add(0);
-        StoryActivity.ill.add(1);
-        StoryActivity.ill.add(0);
-        StoryActivity.ill.add(1);
-        StoryActivity.ill.add(0);
-        StoryActivity.ill.add(1);
-        StoryActivity.ill.add(1);
-        StoryActivity.ill.add(0);
-        StoryActivity.ill.add(0);
 
 
     }
 
 }
-
-
-
 
 /*
     텍스트를 세팅하는 스트링 어레이 하나와

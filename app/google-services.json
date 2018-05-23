@@ -1,0 +1,43 @@
+
+{
+  "project_info": {
+    "project_number": "195109564321",
+    "firebase_url": "https://wakeup-14326.firebaseio.com",
+    "project_id": "wakeup-14326",
+    "storage_bucket": "wakeup-14326.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195109564321:android:899c69270a7b9c4b",
+        "android_client_info": {
+          "package_name": "com.example.alpjh.wakeup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195109564321-jghq8djj3bb7fsudnbh7m9q8pv9suo9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVDpCbi1eC4_PfpPq3YTd9ucy6jAOZR5o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
