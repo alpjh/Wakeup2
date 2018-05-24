@@ -1,6 +1,7 @@
 package com.example.alpjh.wakeup;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
@@ -267,21 +268,19 @@ public class GameActivity extends AppCompatActivity  {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();     //닫기
+                        Intent intent = new Intent(GameActivity.this, RankActivity.class);
+                        startActivity(intent);
                     }
                 });
                 alert.setMessage("성공!");
                 alert.show();
 
+
             }
         }, 5000);
 
      }
-     public void success (){
-        //totalScore.setText(StartActivity.getUserID());
-        String score = String.valueOf(classScore);
 
-
-    }
 }
 
 

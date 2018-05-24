@@ -42,8 +42,13 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.start_imgb_start :
+
                 userID = sETid.getText().toString();
-                databaseReference.child("user").child(this.getUserID()).setValue(0);
+                if (userID.equals("")) {
+                    userID = "default";
+                }
+
+                databaseReference.child(userID).setValue(0);
                 Intent story_intent = new Intent(StartActivity.this, StoryActivity.class);
                 startActivity(story_intent);
                 overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity);

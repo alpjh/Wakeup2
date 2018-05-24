@@ -43,7 +43,7 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="7c5a1f4abc163030b5178f2f716c1fec9b2321c1">
+        sha1="306de2e8d9cfd29fdc218b27ae6a274898b4f6c2">
         <dex dex="C:\Users\alpjh\AndroidStudioProjects\Wakeup2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_d970287fd62aa6c3e1aa3350c6f6a17c27b6c864\classes.dex" />
     </item>
     <item
