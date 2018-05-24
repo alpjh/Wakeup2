@@ -17,6 +17,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
+    private static String userID;
+
     ImageButton sBtnStart, sBtnHelp, sBtnSetting;
     EditText sETid;
 
@@ -24,7 +26,6 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
 
         sBtnStart = (ImageButton)findViewById(R.id.start_imgb_start);
         sBtnHelp = (ImageButton)findViewById(R.id.start_imgb_help);
@@ -41,11 +42,12 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.start_imgb_start :
-                databaseReference.child("user").child(sETid.getText().toString()).setValue("0");
+                userID = sETid.getText().toString();
+                databaseReference.child("user").child(this.getUserID()).setValue(0);
                 Intent story_intent = new Intent(StartActivity.this, StoryActivity.class);
                 startActivity(story_intent);
                 overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity);
-                finish();
+                //finish();
                 break;
 
             case R.id.start_imgb_help :
@@ -63,4 +65,9 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+    public static String getUserID (){
+        return userID;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.alpjh.wakeup;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,12 +10,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity  {
 
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
 
     public static int classScore = 0;
@@ -26,11 +30,12 @@ public class GameActivity extends AppCompatActivity  {
 
     public static TextView totalScore;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        databaseReference.child("user").child(StartActivity.getUserID()).setValue(1);
 
         //View (인클루드) 선언
         View student1, student2, student3, student4, student5,
@@ -249,18 +254,34 @@ public class GameActivity extends AppCompatActivity  {
             students.get(i).testStart();
         }
 
-        if(gameClear) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(GameActivity.this);
-            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();     //닫기
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for(int i=0; i<25; i++) {
+                    students.get(i).killThread();
                 }
-            });
-            alert.setMessage("성공!");
-            alert.show();
+                databaseReference.child("user").child(StartActivity.getUserID()).setValue(classScore);
+                AlertDialog.Builder alert = new AlertDialog.Builder(GameActivity.this);
+                alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();     //닫기
+                    }
+                });
+                alert.setMessage("성공!");
+                alert.show();
 
-        }
+            }
+        }, 5000);
 
      }
+     public void success (){
+        //totalScore.setText(StartActivity.getUserID());
+        String score = String.valueOf(classScore);
+
+
+    }
 }
+
+

@@ -2,6 +2,7 @@ package com.example.alpjh.wakeup;
 
 import android.media.Image;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -73,6 +74,12 @@ public class Student extends AppCompatActivity {
         Runnable updater = new Runnable() {
             public void run() {
                 GameActivity.totalScore.setText(GameActivity.classScore + "/200");
+
+                if(GameActivity.classScore >= 100) {
+                    second.cancel();
+                    GameActivity.totalScore.setText("CLEAR!");
+                    GameActivity.gameClear = true;
+                }
                 //health_text.setText(health + "");
                 if (health > 10)
                     health_img.setImageResource(R.drawable.full);
@@ -87,14 +94,13 @@ public class Student extends AppCompatActivity {
                     btn.setImageResource(R.drawable.sleep);
                     second.cancel();
                 }
-                if(GameActivity.classScore >= 500) {
-                    second.cancel();
-                    GameActivity.totalScore.setText("CLEAR!");
-                    GameActivity.gameClear = true;
-                }
             }
         };
         handler.post(updater);
+    }
+
+    public void killThread() {
+        second.cancel();
     }
 
     private void imgChange(ImageButton tmpBtn) {
