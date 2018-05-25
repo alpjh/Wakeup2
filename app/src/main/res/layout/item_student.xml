@@ -14,9 +14,8 @@
 
     <ImageButton
         android:id="@+id/item_imgb_stu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:background="@null"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         app:srcCompat="@drawable/sleep" />
+
 </LinearLayout>

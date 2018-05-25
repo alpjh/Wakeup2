@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class StoryActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //스토리와 그림을 저장할 어레이리스트 선언
     public static ArrayList<String> story = new ArrayList<>();
     public static ArrayList<Integer> ill = new ArrayList<>();
 
@@ -27,6 +28,7 @@ public class StoryActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story);
 
+        //뷰 연결
         btn = (TextView)findViewById(R.id.button2);
         btn = (Button)findViewById(R.id.button2);
         cha = (ImageView)findViewById(R.id.imageView);
@@ -34,11 +36,14 @@ public class StoryActivity extends AppCompatActivity implements View.OnClickList
 
         btn.setOnClickListener(this);
 
+        //스토리데이터 안에 있는 자료 객체선언
         Prologue prologue = new Prologue();
 
+        //객체를 어레이리스트에 넣는 메서드 실행
         prologue.illSet();
         prologue.storySet();
 
+        //캐릭터 초기 뷰 설정
         cha.setVisibility(View.GONE);
         cha2.setVisibility(View.VISIBLE);
 
@@ -48,6 +53,7 @@ public class StoryActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.button2 :
+                //버튼 클릭시 스토리 진행하도록 설정
                 if(sCounter<story.size()) {
 
                     btn.setText(story.get(sCounter));

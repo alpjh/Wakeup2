@@ -18,17 +18,22 @@ import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity  {
 
+    //파이어베이스 레퍼런스 가져오기
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-
+    //플레이어가 얻은 점수
     public static int classScore = 0;
 
+    //게임 클리어 조건
     public static boolean gameClear = false;
+    //게임 오버 조건 UNUSE
     public static boolean gameOver = false;
 
+    //학생 객체를 넣을 어레이리스트
     ArrayList<Student> students = new ArrayList<>();
 
+    //점수를 표시해줄 텍스트뷰
     public static TextView totalScore;
 
     @Override
@@ -36,7 +41,8 @@ public class GameActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        databaseReference.child("user").child(StartActivity.getUserID()).setValue(1);
+        //게임을 시작하게 될 경우 데이터베이스에 앞에서 받은 아이디로 1값을 세팅함.
+        databaseReference.child(StartActivity.getUserID()).setValue(1);
 
         //View (인클루드) 선언
         View student1, student2, student3, student4, student5,
@@ -199,6 +205,7 @@ public class GameActivity extends AppCompatActivity  {
 //        Student stu24 = new Student(stu_health24, stu_btn24);
 //        Student stu25 = new Student(stu_health25, stu_btn25);
 
+        //Include에 넣을 학생 연결
         Student stu1 = new Student(stu_health1, stu_btn1);
         Student stu2 = new Student(stu_health2, stu_btn2);
         Student stu3 = new Student(stu_health3, stu_btn3);
@@ -225,6 +232,7 @@ public class GameActivity extends AppCompatActivity  {
         Student stu24 = new Student(stu_health24, stu_btn24);
         Student stu25 = new Student(stu_health25, stu_btn25);
 
+        //어레이리스트에 학생 추가
         students.add(stu1);
         students.add(stu2);
         students.add(stu3);
@@ -251,23 +259,29 @@ public class GameActivity extends AppCompatActivity  {
         students.add(stu24);
         students.add(stu25);
 
+        //students 객체에서 각각 쓰레드를 시작함
         for(int i=0; i<25; i++) {
             students.get(i).testStart();
         }
 
+        //핸들러 선언. 일정 시간이 지난 후 게임을 멈추기 위해 사용함.
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                //일정시간이 지난 후 student 클래스의 killThread 함수 호출. 모든 쓰레드를 순회하며 멈추게 한다.
                 for(int i=0; i<25; i++) {
                     students.get(i).killThread();
                 }
-                databaseReference.child("user").child(StartActivity.getUserID()).setValue(classScore);
+                //서버에 앞에서 받은 유저아이디와 최종점수를 함께 업데이트
+                databaseReference.child(StartActivity.getUserID()).setValue(classScore);
+                //게임이 종료된 후 알림창을 띄워준다.
                 AlertDialog.Builder alert = new AlertDialog.Builder(GameActivity.this);
                 alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();     //닫기
+                        //확인버튼을 누를 시 랭크를 볼수있는 페이지로 넘어간다.
                         Intent intent = new Intent(GameActivity.this, RankActivity.class);
                         startActivity(intent);
                     }
@@ -275,9 +289,8 @@ public class GameActivity extends AppCompatActivity  {
                 alert.setMessage("성공!");
                 alert.show();
 
-
             }
-        }, 5000);
+        }, 1000);
 
      }
 
